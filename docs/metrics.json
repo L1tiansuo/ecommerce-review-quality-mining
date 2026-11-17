@@ -2,68 +2,122 @@
   "model_version": "tfidf-svc-v1",
   "dict_version": "2026-11-v2",
   "sentiment": {
-    "macro_f1": 0.628555033116966,
-    "per_class": {
-      "pos": {
-        "precision": 0.9573170731707317,
-        "recall": 0.9308300395256917,
-        "f1-score": 0.9438877755511023,
-        "support": 506.0
-      },
-      "neu": {
-        "precision": 0.0,
-        "recall": 0.0,
-        "f1-score": 0.0,
-        "support": 0.0
-      },
-      "neg": {
-        "precision": 0.9505154639175257,
-        "recall": 0.9331983805668016,
-        "f1-score": 0.9417773237997957,
-        "support": 494.0
-      },
-      "accuracy": 0.932,
-      "macro avg": {
-        "precision": 0.6359441790294191,
-        "recall": 0.6213428066974978,
-        "f1-score": 0.628555033116966,
-        "support": 1000.0
-      },
-      "weighted avg": {
-        "precision": 0.9539570781996478,
-        "recall": 0.932,
-        "f1-score": 0.9428452123859568,
-        "support": 1000.0
-      }
-    },
+    "macro_f1": 0.9429972068631363,
+    "macro_f1_scope": "binary",
     "n": 1000,
-    "confusion_matrix": [
-      [
-        471,
-        11,
-        24
-      ],
-      [
-        0,
-        0,
-        0
-      ],
-      [
-        21,
-        12,
-        461
-      ]
-    ],
-    "labels": [
+    "gold_labels": [
       "pos",
-      "neu",
       "neg"
     ],
-    "valid_three_class_acceptance": false
+    "binary": {
+      "macro_f1": 0.9429972068631363,
+      "accuracy": 0.943,
+      "per_class": {
+        "pos": {
+          "precision": 0.9481037924151696,
+          "recall": 0.9387351778656127,
+          "f1-score": 0.9433962264150944,
+          "support": 506.0
+        },
+        "neg": {
+          "precision": 0.9378757515030061,
+          "recall": 0.9473684210526315,
+          "f1-score": 0.9425981873111783,
+          "support": 494.0
+        },
+        "accuracy": 0.943,
+        "macro avg": {
+          "precision": 0.9429897719590878,
+          "recall": 0.9430517994591221,
+          "f1-score": 0.9429972068631363,
+          "support": 1000.0
+        },
+        "weighted avg": {
+          "precision": 0.9430511402045608,
+          "recall": 0.943,
+          "f1-score": 0.9430019950977598,
+          "support": 1000.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          475,
+          31
+        ],
+        [
+          26,
+          468
+        ]
+      ],
+      "labels": [
+        "pos",
+        "neg"
+      ]
+    },
+    "three_class": {
+      "status": "not_evaluated",
+      "reason": "测试集没有中性金标，把缺失类计入宏平均会把 F1 拉低",
+      "observed_macro_f1": 0.628555033116966,
+      "per_class": {
+        "pos": {
+          "precision": 0.9573170731707317,
+          "recall": 0.9308300395256917,
+          "f1-score": 0.9438877755511023,
+          "support": 506.0
+        },
+        "neu": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "neg": {
+          "precision": 0.9505154639175257,
+          "recall": 0.9331983805668016,
+          "f1-score": 0.9417773237997957,
+          "support": 494.0
+        },
+        "accuracy": 0.932,
+        "macro avg": {
+          "precision": 0.6359441790294191,
+          "recall": 0.6213428066974978,
+          "f1-score": 0.628555033116966,
+          "support": 1000.0
+        },
+        "weighted avg": {
+          "precision": 0.9539570781996478,
+          "recall": 0.932,
+          "f1-score": 0.9428452123859568,
+          "support": 1000.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          471,
+          11,
+          24
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          21,
+          12,
+          461
+        ]
+      ],
+      "labels": [
+        "pos",
+        "neu",
+        "neg"
+      ]
+    }
   },
   "aspect": {
     "status": "not_evaluated",
     "reason": "需要 300 条独立人工方面标注"
   },
-  "generated_at": "2026-11-17T12:58:11.660137+00:00"
+  "generated_at": "2026-11-17T13:49:10.567130+00:00"
 }

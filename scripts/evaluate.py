@@ -111,19 +111,45 @@ def main():
 
     rows = list(csv.DictReader(open(a.testset, encoding="utf-8-sig")))
     truth = [r["label"] for r in rows]
-    pred = [r["label"] for r in predict([r["text"] for r in rows])]
-    report = classification_report(truth, pred, labels=["pos", "neu", "neg"],
-                                   output_dict=True, zero_division=0)
+    out = predict([r["text"] for r in rows])
+    pred = [p["label"] for p in out]
+
+    # 金标里有哪几类，决定哪个口径能算。
+    # 10cats 只有正负两类的金标，三分类宏 F1 会把"中性"当成一个 F1=0 的类来平均，
+    # 得到的是"缺一类"的算术结果，不是模型的三分类能力，因此单独放在 three_class 里并标有效性。
+    gold_labels = [l for l in ("pos", "neu", "neg") if l in set(truth)]
+    pred_binary = ["pos" if p["score"] >= 0 else "neg" for p in out]
+    binary_report = classification_report(truth, pred_binary, labels=["pos", "neg"],
+                                          output_dict=True, zero_division=0)
+    three_report = classification_report(truth, pred, labels=["pos", "neu", "neg"],
+                                         output_dict=True, zero_division=0)
+    three_valid = set(gold_labels) == {"pos", "neu", "neg"}
+    accuracy = sum(1 for t, p in zip(truth, pred_binary) if t == p) / max(1, len(truth))
+
     result = {
         "model_version": version(),
         "dict_version": DICT.get("version"),
         "sentiment": {
-            "macro_f1": report["macro avg"]["f1-score"],
-            "per_class": report,
+            # 头条指标只用金标里真实存在的类别来算；三分类在缺金标时不算指标。
+            "macro_f1": binary_report["macro avg"]["f1-score"],
+            "macro_f1_scope": "binary" if set(gold_labels) <= {"pos", "neg"} else "three_class",
             "n": len(rows),
-            "confusion_matrix": confusion_matrix(truth, pred, labels=["pos", "neu", "neg"]).tolist(),
-            "labels": ["pos", "neu", "neg"],
-            "valid_three_class_acceptance": set(truth) == {"pos", "neu", "neg"},
+            "gold_labels": gold_labels,
+            "binary": {
+                "macro_f1": binary_report["macro avg"]["f1-score"],
+                "accuracy": accuracy,
+                "per_class": binary_report,
+                "confusion_matrix": confusion_matrix(truth, pred_binary, labels=["pos", "neg"]).tolist(),
+                "labels": ["pos", "neg"],
+            },
+            "three_class": {
+                "status": "evaluated" if three_valid else "not_evaluated",
+                "reason": None if three_valid else "测试集没有中性金标，把缺失类计入宏平均会把 F1 拉低",
+                "observed_macro_f1": three_report["macro avg"]["f1-score"],
+                "per_class": three_report,
+                "confusion_matrix": confusion_matrix(truth, pred, labels=["pos", "neu", "neg"]).tolist(),
+                "labels": ["pos", "neu", "neg"],
+            },
         },
         "aspect": {"status": "not_evaluated", "reason": "需要 300 条独立人工方面标注"},
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -157,7 +183,15 @@ def main():
                 v["tp"], v["fp"], v["fn"]))
     else:
         print("方面识别：not_evaluated（%s）" % s.get("reason", ""))
-    print("情感 macro-F1：%.4f（n=%d）" % (result["sentiment"]["macro_f1"], result["sentiment"]["n"]))
+    print("情感二分类 macro-F1：%.4f  准确率：%.4f（n=%d，金标类别 %s）" % (
+        result["sentiment"]["macro_f1"], accuracy,
+        result["sentiment"]["n"], "/".join(gold_labels)))
+    tc = result["sentiment"]["three_class"]
+    if tc["status"] == "evaluated":
+        print("情感三分类 macro-F1：%.4f" % tc["observed_macro_f1"])
+    else:
+        print("情感三分类：not_evaluated（%s；把缺失类计入时为 %.4f，仅作参考）" % (
+            tc["reason"], tc["observed_macro_f1"]))
     print("写出 %s" % a.out)
 
 
