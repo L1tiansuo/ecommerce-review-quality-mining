@@ -1,0 +1,48 @@
+services:
+  mysql:
+    image: mysql:8.0.40
+    environment:
+      MYSQL_DATABASE: qr
+      MYSQL_USER: qr
+      MYSQL_PASSWORD: ${DB_PASSWORD:-QrLocal2026!}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-QrRoot2026!}
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes: ["mysql_data:/var/lib/mysql"]
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+  algo:
+    build: ./algo
+    environment: {OMP_NUM_THREADS: '2', OPENBLAS_NUM_THREADS: '2'}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/v1/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+  backend:
+    build: ./backend
+    environment:
+      DB_URL: jdbc:mysql://mysql:3306/qr?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai
+      DB_USER: qr
+      DB_PASSWORD: ${DB_PASSWORD:-QrLocal2026!}
+      JWT_SECRET: ${JWT_SECRET:-local-development-change-this-secret-32chars}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-QrDemo2026!}
+      ALGO_URL: http://algo:8001
+      SEED_DIR: /seed
+      TZ: Asia/Shanghai
+    volumes: ["./data/seed:/seed:ro"]
+    depends_on:
+      mysql: {condition: service_healthy}
+      algo: {condition: service_healthy}
+    restart: unless-stopped
+  web:
+    build: ./web
+    ports: ["8080:80"]
+    depends_on: [backend]
+    restart: unless-stopped
+volumes:
+  mysql_data:

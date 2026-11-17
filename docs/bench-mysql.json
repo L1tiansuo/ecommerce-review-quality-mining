@@ -1,0 +1,26 @@
+﻿[
+    {
+        "endpoint":  "dashboard/overview",
+        "count":  200,
+        "p50_ms":  5.2,
+        "p95_ms":  7.6,
+        "p99_ms":  11.1,
+        "max_ms":  23.3
+    },
+    {
+        "endpoint":  "products/68382/profile",
+        "count":  200,
+        "p50_ms":  17.5,
+        "p95_ms":  22.1,
+        "p99_ms":  29.1,
+        "max_ms":  35.3
+    },
+    {
+        "endpoint":  "alerts?page=1",
+        "count":  200,
+        "p50_ms":  5.6,
+        "p95_ms":  6.9,
+        "p99_ms":  7.8,
+        "max_ms":  12.2
+    }
+]

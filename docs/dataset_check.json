@@ -1,0 +1,16 @@
+{
+  "products": 1120,
+  "reviews": 125720,
+  "head_tail_ratio": 67.4,
+  "five_star_share": 0.5849904549793191,
+  "recent7": 23328,
+  "future": 0,
+  "months": 13,
+  "scenarios": {
+    "S-01": 240,
+    "S-02": 240,
+    "S-03": 240,
+    "S-04": 240,
+    "S-05": 240
+  }
+}

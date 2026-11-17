@@ -1,0 +1,42 @@
+{
+    "S-01":  {
+                 "product_id":  900000001,
+                 "qi":  26.61,
+                 "grade":  1,
+                 "alert_level":  3,
+                 "fake7_ratio":  1,
+                 "neg7_ratio":  1
+             },
+    "S-02":  {
+                 "product_id":  900000002,
+                 "qi":  30.32,
+                 "grade":  1,
+                 "alert_level":  3,
+                 "fake7_ratio":  1,
+                 "neg7_ratio":  1
+             },
+    "S-03":  {
+                 "product_id":  900000003,
+                 "qi":  82.43,
+                 "grade":  4,
+                 "alert_level":  3,
+                 "fake7_ratio":  1,
+                 "neg7_ratio":  0
+             },
+    "S-04":  {
+                 "product_id":  900000004,
+                 "qi":  46.2,
+                 "grade":  1,
+                 "alert_level":  3,
+                 "fake7_ratio":  1,
+                 "neg7_ratio":  1
+             },
+    "S-05":  {
+                 "product_id":  900000005,
+                 "qi":  82.24,
+                 "grade":  4,
+                 "alert_level":  3,
+                 "fake7_ratio":  1,
+                 "neg7_ratio":  0
+             }
+}

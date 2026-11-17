@@ -1,0 +1,89 @@
+{
+  "results": [
+    {
+      "check": "认证与角色权限",
+      "passed": true,
+      "detail": "未登录401、只读写入403、分析师管理403"
+    },
+    {
+      "check": "AC-03 主数据与外键",
+      "passed": true,
+      "detail": {
+        "product_id": 804269599,
+        "fk_rejected": true
+      }
+    },
+    {
+      "check": "AC-01/02 导入错误、重复、脱敏与回滚",
+      "passed": true,
+      "detail": {
+        "batch": 2,
+        "valid": 9,
+        "invalid": 1,
+        "duplicates": 8,
+        "over_50_percent_rollback": true
+      }
+    },
+    {
+      "check": "AC-04/06 挖掘与指数功能链路（算法质量另评）",
+      "passed": true,
+      "detail": {
+        "task": 1,
+        "progress": 100,
+        "qi": 34.75
+      }
+    },
+    {
+      "check": "AC-07 新旧参数版本并存",
+      "passed": true,
+      "detail": {
+        "old_version_preserved": true,
+        "new_version": "test-1794269599"
+      }
+    },
+    {
+      "check": "AC-08/09 预警抑制、处置与审计",
+      "passed": true,
+      "detail": {
+        "suppressed": true,
+        "disposition_logged": true,
+        "conflict_409": true
+      }
+    },
+    {
+      "check": "AC-11 组合检索与CSV/PDF导出",
+      "passed": true,
+      "detail": {
+        "filtered_rows": 200,
+        "csv_rows": 200,
+        "pdf_bytes": 122613
+      }
+    },
+    {
+      "check": "AC-01 撤销批次",
+      "passed": true,
+      "detail": "批次评论已撤销"
+    },
+    {
+      "check": "AC-10 聚合查询与本机响应测量",
+      "passed": true,
+      "detail": {
+        "environment": "本机H2开发模式，非规定2核4GB/MySQL验收环境",
+        "n": 20,
+        "profile_p95_seconds": 0.03443050000350922,
+        "dashboard_p95_seconds": 0.16975810000440106,
+        "stats": {
+          "products": 1121,
+          "average_qi": 56.934375,
+          "reviews": 125720,
+          "pending": 1117,
+          "weekly_alerts": 1118,
+          "overdue": 0
+        }
+      }
+    }
+  ],
+  "all_passed": true,
+  "algorithm_acceptance": "待人工三分类与方面金标，不包含在功能通过结论中",
+  "deployment": "H2开发模式，Docker/MySQL尚需目标环境验收"
+}

@@ -1,0 +1,27 @@
+# Python
+.venv/
+.conda/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Java / Node
+**/target/
+**/node_modules/
+web/dist/
+
+# 生成物与本地运行态
+.build/
+data/seed/
+db/
+runtime/
+**/runtime/
+data/raw/
+release/*.jar
+release/*.jar.bak
+
+# 构建与编排日志
+*.log
+
+# 本地配置
+.env

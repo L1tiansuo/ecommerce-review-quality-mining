@@ -1,0 +1,188 @@
+{
+  "version": "2026-11-v1",
+  "dimensions": [
+    {
+      "code": "quality",
+      "name": "商品质量",
+      "weight": 0.28,
+      "features": [
+        {
+          "code": "battery",
+          "name": "续航",
+          "synonyms": [
+            "续航",
+            "待机",
+            "掉电",
+            "耗电",
+            "虚标"
+          ]
+        },
+        {
+          "code": "connection",
+          "name": "连接稳定性",
+          "synonyms": [
+            "断连",
+            "掉线",
+            "失联",
+            "不同步",
+            "连不上"
+          ]
+        },
+        {
+          "code": "durability",
+          "name": "做工耐用",
+          "synonyms": [
+            "做工",
+            "缝隙",
+            "开胶",
+            "掉漆",
+            "耐用",
+            "质量",
+            "破裂",
+            "故障"
+          ]
+        },
+        {
+          "code": "performance",
+          "name": "使用性能",
+          "synonyms": [
+            "性能",
+            "速度",
+            "卡顿",
+            "死机",
+            "音质",
+            "屏幕",
+            "清晰"
+          ]
+        },
+        {
+          "code": "content",
+          "name": "内容品质",
+          "synonyms": [
+            "内容",
+            "纸张",
+            "印刷",
+            "错字",
+            "翻译"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "appearance",
+      "name": "外观设计",
+      "weight": 0.12,
+      "features": [
+        {
+          "code": "design",
+          "name": "外观设计",
+          "synonyms": [
+            "外观",
+            "颜值",
+            "配色",
+            "质感",
+            "好看",
+            "漂亮"
+          ]
+        },
+        {
+          "code": "size",
+          "name": "尺寸手感",
+          "synonyms": [
+            "尺寸",
+            "手感",
+            "大小",
+            "重量"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "logistics",
+      "name": "物流配送",
+      "weight": 0.15,
+      "features": [
+        {
+          "code": "delivery",
+          "name": "配送时效",
+          "synonyms": [
+            "物流",
+            "快递",
+            "发货",
+            "配送",
+            "次日达",
+            "迟迟不发"
+          ]
+        },
+        {
+          "code": "courier",
+          "name": "配送服务",
+          "synonyms": [
+            "送货",
+            "快递员"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "service",
+      "name": "客服服务",
+      "weight": 0.13,
+      "features": [
+        {
+          "code": "support",
+          "name": "客服售后",
+          "synonyms": [
+            "客服",
+            "售后",
+            "不回复",
+            "态度差",
+            "推诿",
+            "退货",
+            "换货",
+            "服务"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "value",
+      "name": "性价比",
+      "weight": 0.17,
+      "features": [
+        {
+          "code": "price",
+          "name": "价格价值",
+          "synonyms": [
+            "性价比",
+            "价格",
+            "贵",
+            "划算",
+            "便宜",
+            "值得",
+            "值不值"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "package",
+      "name": "包装完好",
+      "weight": 0.15,
+      "features": [
+        {
+          "code": "packing",
+          "name": "包装保护",
+          "synonyms": [
+            "包装",
+            "盒子",
+            "破损",
+            "压坏",
+            "礼盒",
+            "装帧"
+          ]
+        }
+      ]
+    }
+  ]
+}

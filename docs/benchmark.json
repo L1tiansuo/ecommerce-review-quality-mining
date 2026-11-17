@@ -1,0 +1,56 @@
+{
+  "reviews": 100000,
+  "seconds": 0.10800639999797568,
+  "pass_300s": true,
+  "scope": "仅质量指数核心计算，不含NLP、HTTP、数据库",
+  "result": {
+    "qi": 44.92,
+    "grade": 1,
+    "sample_size": 100000,
+    "dims": [
+      {
+        "code": "quality",
+        "name": "商品质量",
+        "score": 0.19010797,
+        "n": 100000,
+        "contribution": 5.323023
+      },
+      {
+        "code": "appearance",
+        "name": "外观设计",
+        "score": 0.55,
+        "n": 0,
+        "contribution": 6.6
+      },
+      {
+        "code": "logistics",
+        "name": "物流配送",
+        "score": 0.55,
+        "n": 0,
+        "contribution": 8.25
+      },
+      {
+        "code": "service",
+        "name": "客服服务",
+        "score": 0.55,
+        "n": 0,
+        "contribution": 7.15
+      },
+      {
+        "code": "value",
+        "name": "性价比",
+        "score": 0.55,
+        "n": 0,
+        "contribution": 9.35
+      },
+      {
+        "code": "package",
+        "name": "包装完好",
+        "score": 0.55,
+        "n": 0,
+        "contribution": 8.25
+      }
+    ],
+    "reference": false
+  }
+}

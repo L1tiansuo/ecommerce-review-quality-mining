@@ -1,0 +1,34 @@
+{
+  "dataset": "online_shopping_10_cats",
+  "split": "deduplicated text, stratified random holdout; source lacks product IDs, not a product-disjoint test",
+  "n_train": 61573,
+  "n_test": 1000,
+  "binary": {
+    "0": {
+      "precision": 0.9378757515030061,
+      "recall": 0.9473684210526315,
+      "f1-score": 0.9425981873111783,
+      "support": 494.0
+    },
+    "1": {
+      "precision": 0.9481037924151696,
+      "recall": 0.9387351778656127,
+      "f1-score": 0.9433962264150944,
+      "support": 506.0
+    },
+    "accuracy": 0.943,
+    "macro avg": {
+      "precision": 0.9429897719590878,
+      "recall": 0.9430517994591221,
+      "f1-score": 0.9429972068631363,
+      "support": 1000.0
+    },
+    "weighted avg": {
+      "precision": 0.9430511402045608,
+      "recall": 0.943,
+      "f1-score": 0.9430019950977598,
+      "support": 1000.0
+    }
+  },
+  "source_sha256": "f6c5b724122d8547b700ac4524898eb7e28abbee63f798e95a8faa408829afdb"
+}
