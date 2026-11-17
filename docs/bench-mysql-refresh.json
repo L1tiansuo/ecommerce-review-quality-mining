@@ -2,18 +2,18 @@
     {
         "endpoint":  "dashboard/overview?refresh=true",
         "count":  200,
-        "p50_ms":  33.4,
-        "p95_ms":  38.5,
-        "p99_ms":  40.2,
-        "max_ms":  47.3
+        "p50_ms":  35.4,
+        "p95_ms":  40.8,
+        "p99_ms":  43,
+        "max_ms":  49
     },
     {
         "endpoint":  "products/68382/profile",
         "count":  200,
-        "p50_ms":  16.1,
-        "p95_ms":  19.3,
-        "p99_ms":  21.8,
-        "max_ms":  24
+        "p50_ms":  16.5,
+        "p95_ms":  19.2,
+        "p99_ms":  20.8,
+        "max_ms":  25.1
     },
     {
         "endpoint":  "alerts?page=1",
@@ -21,6 +21,6 @@
         "p50_ms":  5,
         "p95_ms":  6.3,
         "p99_ms":  6.7,
-        "max_ms":  7.6
+        "max_ms":  7.4
     }
 ]

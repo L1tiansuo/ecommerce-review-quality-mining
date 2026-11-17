@@ -1,5 +1,6 @@
 {
   "model_version": "tfidf-svc-v1",
+  "dict_version": "2026-11-v2",
   "sentiment": {
     "macro_f1": 0.628555033116966,
     "per_class": {
@@ -62,7 +63,7 @@
   },
   "aspect": {
     "status": "not_evaluated",
-    "reason": "需要300条独立人工方面标注"
+    "reason": "需要 300 条独立人工方面标注"
   },
-  "generated_at": "2026-11-09T16:27:55.437438+00:00"
+  "generated_at": "2026-11-17T12:58:11.660137+00:00"
 }

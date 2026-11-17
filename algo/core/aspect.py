@@ -5,13 +5,21 @@ import ahocorasick
 from .sentiment import local_score
 DICT_PATH=Path(__file__).resolve().parents[1]/'data/aspect_dict.json'
 DEFAULT=json.loads(DICT_PATH.read_text(encoding='utf-8'))
+_BUILT={}
+def _automaton(dictionary):
+    """按词表对象缓存自动机；批量分析时省掉每条评论重建一次的开销。"""
+    key=id(dictionary)
+    ac=_BUILT.get(key)
+    if ac is None:
+        ac=ahocorasick.Automaton()
+        for d in dictionary['dimensions']:
+            for f in d['features']:
+                for word in f['synonyms']:ac.add_word(word,(word,f['code'],d['code']))
+        ac.make_automaton();_BUILT[key]=ac
+    return ac
 def extract(text,dictionary=None):
     dictionary=dictionary or DEFAULT
-    ac=ahocorasick.Automaton()
-    for d in dictionary['dimensions']:
-        for f in d['features']:
-            for word in f['synonyms']:ac.add_word(word,(word,f['code'],d['code']))
-    ac.make_automaton();hits={}
+    ac=_automaton(dictionary);hits={}
     for end,(word,feature,dim) in ac.iter(text):
         start=end-len(word)+1
         # 窗口不跨越标点，降低相邻方面的情感串扰。
