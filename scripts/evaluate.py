@@ -40,6 +40,7 @@ def aspect_metrics(gold_rows):
     tp = fp = fn = 0
     loc_ok = loc_n = 0
     pol_ok = pol_n = 0
+    polb_ok = polb_n = 0
     per_feature = defaultdict(lambda: {"tp": 0, "fp": 0, "fn": 0})
     per_dim = defaultdict(lambda: {"tp": 0, "fp": 0, "fn": 0})
 
@@ -63,6 +64,11 @@ def aspect_metrics(gold_rows):
             pol_n += 1
             if g.get("polarity") == p["polarity"]:
                 pol_ok += 1
+            # 二分类口径：只在金标为明确褒贬时统计，避免"中性"噪声压低主指标
+            if g.get("polarity") in (1, -1):
+                polb_n += 1
+                if p["polarity"] == g.get("polarity"):
+                    polb_ok += 1
         for code in gold_codes - pred_codes:
             fn += 1
             per_feature[code]["fn"] += 1
@@ -97,6 +103,8 @@ def aspect_metrics(gold_rows):
         "tp": tp, "fp": fp, "fn": fn,
         "localization_accuracy": round(loc_ok / max(1, loc_n), 4),
         "aspect_sentiment_accuracy": round(pol_ok / max(1, pol_n), 4),
+        "aspect_sentiment_accuracy_binary": round(polb_ok / max(1, polb_n), 4),
+        "aspect_sentiment_binary_n": polb_n,
         "by_dimension": dict(sorted(dims.items(), key=lambda kv: -(kv[1]["tp"] + kv[1]["fn"]))),
         "by_feature": dict(sorted(features.items(), key=lambda kv: -(kv[1]["tp"] + kv[1]["fn"]))),
     }
